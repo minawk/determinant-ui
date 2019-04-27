@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 class InputsComponent extends Component {
-  render() {
+  render = () => {
     const length = this.props.inputs.length;
     return this.props.inputs.map((valueX, x) => {
       return valueX.map((valueY, y) => {

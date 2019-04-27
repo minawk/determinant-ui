@@ -20,7 +20,12 @@ class FormComponent extends Component {
     return inputs;
   }
 
-  componentDidUpdate(oldProps) {
+  updateDeterminant = () => {
+    const determinant = new Matrix(this.state.inputs).determinant();
+    this.setState({determinant});
+  }
+
+  componentDidUpdate = (oldProps) => {
     const newProps = this.props;
     if (oldProps.dimension !== newProps.dimension) {
       const inputs = this.initInputs(() => 0);
@@ -35,12 +40,8 @@ class FormComponent extends Component {
     this.updateDeterminant();
   }
 
-  updateDeterminant = () => {
-    const determinant = new Matrix(this.state.inputs).determinant();
-    this.setState({determinant});
-  }
 
-  handleInput = (e, x, y) => {
+  handleChange = (e, x, y) => {
     let inputs = this.state.inputs;
     inputs[x][y] = e.target.value;
     this.setState({inputs});
@@ -57,16 +58,16 @@ class FormComponent extends Component {
     this.setState({inputs});
   }
 
-  render() {
+  render = () => {
     return (
       <Fragment>
         <form onSubmit={this.handleSubmit}>
           <Inputs
             inputs={this.state.inputs}
-            handleChange={this.handleInput} />
+            handleChange={this.handleChange} />
           <br />
-          <button onClick={this.handleRandom}>Random</button>
           <button type="submit">Submit</button>
+          <button onClick={this.handleRandom}>Random</button>
         </form>
         <div>Determinant = {this.state.determinant}</div>
       </Fragment>

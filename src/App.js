@@ -13,6 +13,7 @@ class App extends Component {
       this.setState({ dimension })
     }
   }
+
   render() {
     return (
       <div className="App">
